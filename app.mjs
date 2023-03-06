@@ -97,6 +97,30 @@ app.get(
 );
 
 app.get(
+    "/search/category/:categoryId/product/:productName",
+    function (request, response) {
+        let categoryId = request.params["categoryId"];
+        let productName = request.params["productName"];
+        // serach for a product by a name in the category
+        response.send(
+            {
+                "category": categoryId,
+                "product": productName
+            }
+        );
+    }
+);
+
+app.get(
+    "/file/:fileName.:fileExt",
+    function(request, response) {
+        let fileName = request.params["fileName"];
+        let fileExt = request.params["fileExt"];
+        response.sendFile(__dirname + "/html/" + fileName + "." + fileExt);
+    }
+)
+
+app.get(
     "/info/home",
     function (request, response) {
         response.redirect("..");
